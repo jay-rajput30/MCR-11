@@ -4,8 +4,6 @@ function App() {
   return (
     <div>
       <h1>MCR 11</h1>
-      <p>hello world</p>
-      <button>hello</button>
     </div>
   );
 }
