@@ -16,7 +16,11 @@
 .navContainer > h2 {
   cursor: pointer;
 }
-
+.navContainer > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 .navContainer > input {
   width: 20vw;
 }

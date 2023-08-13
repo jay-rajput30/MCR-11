@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./pages.module.css";
 import { getAllGenre, getAllRating, getAllYears } from "../utils/home.utils";
 import { useData } from "../context/DataProvider";
 import MovieCard from "../components/Cards/MovieCard/MovieCard";
 const Home = ({ searchText }) => {
-  const { data } = useData();
-
+  const { data, watchList, starred } = useData();
+  const [reset, setReset] = useState(false);
   const [selectedGenre, setSelectedGenre] = useState("All Genre");
   const [selectedYear, setSelectedYear] = useState("Release Year");
   const [selectedRating, setSelectedRating] = useState("Rating");
 
-  console.log({ selectedGenre, selectedRating, selectedYear });
-
+  //   useEffect(() => {
+  //     localStorage.setItem(
+  //       "data",
+  //       JSON.stringify({ data: ratingFilteredData, watchList, starred })
+  //     );
+  //   }, [selectedGenre, selectedYear, selectedRating]);
   const selectYearChangeHandler = (e) => {
     const updatedYear =
       e.target.value === "Release Year" ? e.target.value : +e.target.value;
@@ -57,6 +61,10 @@ const Home = ({ searchText }) => {
       ? yearFilteredData
       : yearFilteredData.filter((item) => +item.rating === +selectedRating);
 
+  localStorage.setItem(
+    "data",
+    JSON.stringify({ data: ratingFilteredData, watchList, starred })
+  );
   return (
     <div className={styles.homeContainer}>
       <header>
