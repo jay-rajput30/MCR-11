@@ -1,7 +1,15 @@
 import React from "react";
 import styles from "./pages.module.css";
+import { useData } from "../context/DataProvider";
 const Starred = () => {
-  return <div>Starred</div>;
+  const { starred } = useData();
+  return (
+    <div className={styles.starredContainer}>
+      {starred.map((item) => {
+        return <MovieCard key={item.id} movie={item} />;
+      })}
+    </div>
+  );
 };
 
 export default Starred;

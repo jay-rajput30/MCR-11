@@ -13,6 +13,9 @@
   align-items: center;
   padding: var(--space-2);
 }
+.navContainer > h2 {
+  cursor: pointer;
+}
 
 .navContainer > input {
   width: 20vw;

@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./Navbar.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 const Navbar = ({ searchText, setSearchText }) => {
+  const navigate = useNavigate();
   return (
     <nav className={styles.navContainer}>
-      <h2>IMDB</h2>
+      <h2 onClick={() => navigate("/")}>IMDB</h2>
       <input
         type="text"
         placeholder="search movie by title, cast or director"
@@ -13,7 +14,7 @@ const Navbar = ({ searchText, setSearchText }) => {
       />
       <div className={styles.navItemContainer}>
         <NavLink to="/">movies</NavLink>
-        <NavLink to="/watchlater">watch-list</NavLink>
+        <NavLink to="/watchlist">watch-list</NavLink>
         <NavLink to="/starred">starred</NavLink>
       </div>
     </nav>

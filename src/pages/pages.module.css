@@ -1,5 +1,8 @@
+/* home page */
 .homeContainer {
   padding: var(--space-1) var(--space-3);
+  width: 90vw;
+  margin: 0 auto;
 }
 .homeContainer header {
   display: flex;
@@ -10,5 +13,47 @@
 .homeContainer main {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
+}
+
+/* single movie page */
+
+.singleMovieContainer {
+  padding: var(--space-3);
+  display: flex;
+  gap: 24px;
+  width: 60vw;
+  margin: 0 auto;
+}
+.singleMovieContainer > * {
+  flex: 1;
+}
+
+.singleMovieDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.singleMovieDetailsBtnContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* watch list page */
+
+.watchlistContainer {
+  padding: var(--space-3);
+  width: 80vw;
+  margin: 0 auto;
+}
+
+/* starred page */
+
+.starredContainer {
+  padding: var(--space-3);
+  width: 80vw;
+  margin: 0 auto;
 }

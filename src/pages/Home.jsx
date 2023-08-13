@@ -38,12 +38,6 @@ const Home = ({ searchText }) => {
       ? yearFilteredData
       : yearFilteredData.filter((item) => +item.rating === +selectedRating);
 
-  //   console.log({
-  //     filteredData,
-  //     genreFilteredData,
-  //     yearFilteredData,
-  //     ratingFilteredData,
-  //   });
   return (
     <div className={styles.homeContainer}>
       <header>
