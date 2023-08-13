@@ -1,3 +1,8 @@
-div {
-  color: var(--color-body-text);
+.homeContainer {
+  padding: var(--space-1) var(--space-3);
+}
+.homeContainer header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

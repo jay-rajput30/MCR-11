@@ -9,7 +9,7 @@ const initialState = localStorage.getItem("data")
 const DataProvider = ({ children }) => {
   const [data, dispatch] = useReducer(dataReducer, initialState);
   return (
-    <dataContext.Provider value={{ data, dispatch }}>
+    <dataContext.Provider value={{ ...data, dispatch }}>
       {children}
     </dataContext.Provider>
   );
@@ -18,6 +18,6 @@ const DataProvider = ({ children }) => {
 export default DataProvider;
 
 export const useData = () => {
-  const { data, dispatch } = useContext(dataContext);
-  return { data, dispatch };
+  const { data, watchLater, starred, dispatch } = useContext(dataContext);
+  return { data, watchLater, starred, dispatch };
 };

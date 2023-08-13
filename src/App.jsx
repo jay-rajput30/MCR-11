@@ -3,12 +3,12 @@ import styles from "./App.module.css";
 import Home from "./pages/Home";
 import Starred from "./pages/Starred";
 import Watchlist from "./pages/Watchlist";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
-  console.log("hello");
   return (
     <div>
-      <h1>MCR 11</h1>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/starred" element={<Starred />} />
