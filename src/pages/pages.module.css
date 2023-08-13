@@ -6,3 +6,9 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.homeContainer main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}

@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./pages.module.css";
 import { getAllGenre, getAllRating, getAllYears } from "../utils/home.utils";
 import { useData } from "../context/DataProvider";
-const Home = () => {
+import MovieCard from "../components/Cards/MovieCard/MovieCard";
+const Home = ({ searchText }) => {
   const { data } = useData();
+
+  const [selectedGenre, setSelectedGenre] = useState("Drama");
+  const [selectedYear, setSelectedYear] = useState(1990);
+  const [selectedRating, setSelectedRating] = useState(1);
+  const filteredData =
+    searchText !== ""
+      ? data.filter(
+          (item) =>
+            item.title.toLowerCase().includes(searchText.toLowerCase()) ||
+            item.director.toLowerCase().includes(searchText.toLowerCase()) ||
+            item.cast.find((item) =>
+              item.toLowerCase().includes(searchText.toLowerCase())
+            )
+        )
+      : data;
+  console.log({ filteredData });
   return (
     <div className={styles.homeContainer}>
       <header>
@@ -25,7 +42,11 @@ const Home = () => {
         </select>
         <button>Add movie</button>
       </header>
-      <main></main>
+      <main className={styles.movieMainContainer}>
+        {filteredData.map((movie) => {
+          return <MovieCard key={movie.id} movie={movie} />;
+        })}
+      </main>
     </div>
   );
 };
