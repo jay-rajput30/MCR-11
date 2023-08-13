@@ -5,6 +5,15 @@ import MovieCard from "../components/Cards/MovieCard/MovieCard";
 
 const Watchlist = () => {
   const { watchList } = useData();
+
+  if (watchList.length < 1) {
+    return (
+      <div className={styles.starredContainer}>
+        <h1>Oops! mo movie added to watch later.</h1>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.watchlistContainer}>
       {watchList.map((item) => {

@@ -10,6 +10,25 @@ const Home = ({ searchText }) => {
   const [selectedYear, setSelectedYear] = useState("Release Year");
   const [selectedRating, setSelectedRating] = useState("Rating");
 
+  console.log({ selectedGenre, selectedRating, selectedYear });
+
+  const selectYearChangeHandler = (e) => {
+    const updatedYear =
+      e.target.value === "Release Year" ? e.target.value : +e.target.value;
+    setSelectedYear(updatedYear);
+  };
+
+  const selectRatingChangeHandler = (e) => {
+    const updatedYear =
+      e.target.value === "Rating" ? e.target.value : +e.target.value;
+    setSelectedRating(updatedYear);
+  };
+
+  const selectGenreChangeHandler = (e) => {
+    const updatedYear =
+      e.target.value === "All Genre" ? e.target.value : e.target.value;
+    setSelectedGenre(updatedYear);
+  };
   const filteredData =
     searchText !== ""
       ? data.filter(
@@ -42,7 +61,7 @@ const Home = ({ searchText }) => {
     <div className={styles.homeContainer}>
       <header>
         <h1>Movies</h1>
-        <select onChange={(e) => setSelectedGenre(e.target.value)}>
+        <select onChange={selectGenreChangeHandler}>
           {getAllGenre(data).map((item, idx) => {
             return (
               <option key={idx} value={item}>
@@ -51,7 +70,7 @@ const Home = ({ searchText }) => {
             );
           })}
         </select>
-        <select onChange={(e) => setSelectedYear(+e.target.value)}>
+        <select onChange={selectYearChangeHandler}>
           {getAllYears.map((item, idx) => {
             return (
               <option key={idx} value={item}>
@@ -60,7 +79,7 @@ const Home = ({ searchText }) => {
             );
           })}
         </select>
-        <select onChange={(e) => setSelectedRating(e.target.value)}>
+        <select onChange={selectRatingChangeHandler}>
           {getAllRating().map((item, idx) => {
             return (
               <option key={idx} value={item}>

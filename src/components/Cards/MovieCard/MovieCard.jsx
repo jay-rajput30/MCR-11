@@ -34,7 +34,7 @@ const MovieCard = ({ movie }) => {
             {starredItemFound ? "Unstar" : "Star"}
           </button>
           <button onClick={watchlistBtnClickHandler}>
-            {watchListitemFound ? "remove to Watchlist" : "add to Watchlist"}
+            {watchListitemFound ? "remove from Watchlist" : "add to Watchlist"}
           </button>
         </div>
       </div>
