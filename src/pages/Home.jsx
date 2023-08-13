@@ -6,9 +6,10 @@ import MovieCard from "../components/Cards/MovieCard/MovieCard";
 const Home = ({ searchText }) => {
   const { data } = useData();
 
-  const [selectedGenre, setSelectedGenre] = useState("Drama");
-  const [selectedYear, setSelectedYear] = useState(1990);
-  const [selectedRating, setSelectedRating] = useState(1);
+  const [selectedGenre, setSelectedGenre] = useState("All Genre");
+  const [selectedYear, setSelectedYear] = useState("Release Year");
+  const [selectedRating, setSelectedRating] = useState("Rating");
+
   const filteredData =
     searchText !== ""
       ? data.filter(
@@ -20,30 +21,64 @@ const Home = ({ searchText }) => {
             )
         )
       : data;
-  console.log({ filteredData });
+  const genreFilteredData =
+    selectedGenre === "All Genre"
+      ? filteredData
+      : filteredData.filter((item) =>
+          item.genre.find((item) => item === selectedGenre)
+        );
+
+  const yearFilteredData =
+    selectedYear === "Release Year"
+      ? genreFilteredData
+      : genreFilteredData.filter((item) => item.year === selectedYear);
+
+  const ratingFilteredData =
+    selectedRating === "Rating"
+      ? yearFilteredData
+      : yearFilteredData.filter((item) => +item.rating === +selectedRating);
+
+  //   console.log({
+  //     filteredData,
+  //     genreFilteredData,
+  //     yearFilteredData,
+  //     ratingFilteredData,
+  //   });
   return (
     <div className={styles.homeContainer}>
       <header>
         <h1>Movies</h1>
-        <select>
+        <select onChange={(e) => setSelectedGenre(e.target.value)}>
           {getAllGenre(data).map((item, idx) => {
-            return <option key={idx}>{item}</option>;
+            return (
+              <option key={idx} value={item}>
+                {item}
+              </option>
+            );
           })}
         </select>
-        <select>
+        <select onChange={(e) => setSelectedYear(+e.target.value)}>
           {getAllYears.map((item, idx) => {
-            return <option key={idx}>{item}</option>;
+            return (
+              <option key={idx} value={item}>
+                {item}
+              </option>
+            );
           })}
         </select>
-        <select>
+        <select onChange={(e) => setSelectedRating(e.target.value)}>
           {getAllRating().map((item, idx) => {
-            return <option key={idx}>{item}</option>;
+            return (
+              <option key={idx} value={item}>
+                {item}
+              </option>
+            );
           })}
         </select>
         <button>Add movie</button>
       </header>
       <main className={styles.movieMainContainer}>
-        {filteredData.map((movie) => {
+        {ratingFilteredData.map((movie) => {
           return <MovieCard key={movie.id} movie={movie} />;
         })}
       </main>
